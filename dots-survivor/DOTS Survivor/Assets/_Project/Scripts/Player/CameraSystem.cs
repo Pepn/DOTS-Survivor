@@ -26,7 +26,7 @@ namespace DOTSSurvivor
                 var controllerTransform = transformLookup[controllerEntity];
                 var cameraTransform = Camera.main.transform;
 
-                var newCamPos = controllerTransform.Position + new float3(0, 0, -10);
+                var newCamPos = controllerTransform.Position + new float3(0, 0, -20);
                 // Set the camera position to the player's position
                 cameraTransform.position = math.lerp(cameraTransform.position, newCamPos, 0.3f);
 

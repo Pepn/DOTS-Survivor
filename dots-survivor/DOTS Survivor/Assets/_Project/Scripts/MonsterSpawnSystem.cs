@@ -54,7 +54,7 @@ namespace DOTSSurvivor
                 {
                     SeedOffset = seedOffset,
                     PlayerPos = controllerTransform.Position,
-                    MinSpawnDistance = 5.0f,
+                    MinSpawnDistance = 30f,
                 }.ScheduleParallel();
             }
         }
