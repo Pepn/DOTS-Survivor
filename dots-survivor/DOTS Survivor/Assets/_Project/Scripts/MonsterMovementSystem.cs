@@ -6,7 +6,6 @@ using Unity.Transforms;
 using UnityEditor;
 using UnityEngine;
 
-
 namespace DOTSSurvivor
 {
     [RequireMatchingQueriesForUpdate]

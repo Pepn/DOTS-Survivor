@@ -911,6 +911,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   entityCountTmp: {fileID: 437422591}
+  fpsTmp: {fileID: 457495785}
 --- !u!1 &832575517
 GameObject:
   m_ObjectHideFlags: 0

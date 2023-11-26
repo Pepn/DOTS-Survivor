@@ -9,6 +9,7 @@ namespace DOTSSurvivor
     public class UIController : MonoBehaviour
     {
         [SerializeField] private TextMeshProUGUI entityCountTmp;
+        [SerializeField] private TextMeshProUGUI fpsTmp;
 
         private void OnEnable()
         {
@@ -26,7 +27,13 @@ namespace DOTSSurvivor
 
         private void UpdateEntitiesCount(int count)
         {
-            entityCountTmp.text = count.ToString();
+            entityCountTmp.text = $"ENTS: {count.ToString()}";
+
+        }
+
+        private void Update()
+        {
+            fpsTmp.text = $"FPS: {(1.0f / Time.deltaTime).ToString(".")}";
         }
 
         private void UpdateHealth(int health, int maxHealth)
