@@ -1,4 +1,5 @@
 using DOTSSurvivor;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Burst;
@@ -6,8 +7,10 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 namespace DOTSSurvivor
 {
@@ -20,7 +23,7 @@ namespace DOTSSurvivor
             public float DeltaTime;
             public float3 TargetPos;
             public EntityCommandBuffer ECB;
-            // Iterates over all SampleComponents and increments their value
+            // Iterates over all SampleCo  mponents and increments their value
             public void Execute(ref MonsterData sample, ref LocalTransform transform, Entity entity)
             {
                 // Calculate the direction vector from current position to target position
@@ -33,16 +36,22 @@ namespace DOTSSurvivor
                 if (math.distancesq(transform.Position, TargetPos) <= 5.0f)
                 {
                     ECB.DestroyEntity(entity);
+                    // Example: create a new entity
+                    var newHitEntity = ECB.CreateEntity();
+
+                    // You can also add components to the new entity
+                    ECB.AddComponent(newHitEntity, new DamageHit { Damage = 1.0f });
+
                 }
             }
         }
 
-        // Query that matches QueryJob, specified for `BoidTarget`
         EntityQuery queryMonsters;
 
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<PlayerData>();
             queryMonsters = SystemAPI.QueryBuilder().WithAll<MonsterData, LocalTransform>().Build();
         }
 

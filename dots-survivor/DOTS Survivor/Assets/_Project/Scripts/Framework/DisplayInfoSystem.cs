@@ -7,9 +7,12 @@ namespace DOTSSurvivor
 {
     public partial class DisplayInfoSystem : SystemBase
     {
-        public Action<int, int> OnUpdateHealth;
         public Action<int> OnUpdateTotalEntities;
 
+        protected override void OnCreate()
+        {
+            this.RequireForUpdate<MonsterData>();
+        }
         protected override void OnUpdate()
         {
             OnUpdateTotalEntities?.Invoke(GetEntityQuery(ComponentType.ReadWrite<MonsterData>()).CalculateEntityCount());

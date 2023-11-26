@@ -16,7 +16,6 @@ namespace DOTSSurvivor
             var DisplayInfoSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<DisplayInfoSystem>();
             if(DisplayInfoSystem != null)
             {
-                DisplayInfoSystem.OnUpdateHealth += UpdateHealth;
                 DisplayInfoSystem.OnUpdateTotalEntities += UpdateEntitiesCount;
             }
             else
