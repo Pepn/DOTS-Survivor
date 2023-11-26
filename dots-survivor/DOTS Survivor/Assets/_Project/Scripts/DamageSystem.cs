@@ -1,5 +1,6 @@
 using System.Diagnostics;
 using Unity.Burst;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Transforms;
 
@@ -18,15 +19,13 @@ namespace DOTSSurvivor
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
-            state.RequireForUpdate<PlayerData>();
+
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            // An EntityCommandBuffer created from EntityCommandBufferSystem.Singleton will be
-            // played back and disposed by the EntityCommandBufferSystem when it next updates.
-            var ecbSingleton = SystemAPI.GetSingleton<BeginSimulationEntityCommandBufferSystem.Singleton>();
+            var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
             var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
             var playerData = SystemAPI.GetSingletonRW<PlayerData>();
