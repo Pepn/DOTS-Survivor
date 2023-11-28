@@ -33,7 +33,7 @@ namespace DOTSSurvivor
                 transform.Position += direction * sample.MovementSpeed * DeltaTime;
 
                 // If the new position intersects the player with a wall, don't move the player.
-                if (math.distancesq(transform.Position, TargetPos) <= 5.0f)
+                if (math.distancesq(transform.Position, TargetPos) <= 2.0f)
                 {
                     ECB.DestroyEntity(entity);
                     // Example: create a new entity
