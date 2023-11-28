@@ -243,6 +243,7 @@ GameObject:
   - component: {fileID: 1082744223}
   - component: {fileID: 1082744227}
   - component: {fileID: 1082744228}
+  - component: {fileID: 1082744229}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -365,6 +366,21 @@ MonoBehaviour:
   CurrentHealth: 10
   CurrentXP: 0
   CurrentLevel: 1
+--- !u!114 &1082744229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082744222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd9755cee46e9e418b8a868b919a07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeedMetersPerSecond: 5
+  Projectile: {fileID: 5523070719207710993, guid: e6f4b7f2b130db54f84a4b35e36b6686,
+    type: 3}
 --- !u!1 &1838863463
 GameObject:
   m_ObjectHideFlags: 0
