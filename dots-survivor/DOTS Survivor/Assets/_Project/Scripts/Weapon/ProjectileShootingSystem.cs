@@ -7,7 +7,7 @@ using Unity.Transforms;
 namespace DOTSSurvivor
 {
     [UpdateInGroup(typeof(LateSimulationSystemGroup))]
-    public partial struct PlayerShootingSystem : ISystem
+    public partial struct ProjectileShootingSystem : ISystem
     {
         [BurstCompile]
         public void OnCreate(ref SystemState state)
@@ -25,9 +25,9 @@ namespace DOTSSurvivor
 
                 state.EntityManager.SetComponentData(instance, new LocalTransform
                 {
-                    Position = new float3(0,0,0),//SystemAPI.GetComponent<LocalToWorld>(projectileShooter.CannonBallSpawn).Position,
+                    Position = localToWorld.ValueRO.Position,
                     Rotation = quaternion.identity,
-                    Scale = 1.0f, //SystemAPI.GetComponent<LocalTransform>(turret.CannonBallPrefab).Scale
+                    Scale = SystemAPI.GetComponent<LocalTransform>(projectileShooter.Projectile).Scale
                 });
 
                 state.EntityManager.SetComponentData(instance, new Projectile
