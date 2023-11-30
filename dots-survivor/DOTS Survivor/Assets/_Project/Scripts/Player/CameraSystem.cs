@@ -22,19 +22,12 @@ namespace DOTSSurvivor
             {
                 var transformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true);
                 var controllerEntity = SystemAPI.GetSingletonEntity<Controller>();
-                var controller = SystemAPI.GetSingleton<Controller>();
                 var controllerTransform = transformLookup[controllerEntity];
                 var cameraTransform = Camera.main.transform;
 
                 var newCamPos = controllerTransform.Position + new float3(0, 0, -20);
                 // Set the camera position to the player's position
                 cameraTransform.position = math.lerp(cameraTransform.position, newCamPos, 0.3f);
-
-                // Look at the player's position
-                //cameraTransform.LookAt(controllerTransform.Position);
-                //cameraTransform.rotation = new Quaternion(0,0,0,0);
-                //cameraTransform.rotation = math.mul(controllerTransform.Rotation,
-                //    quaternion.RotateX(controller.camera_pitch));
             }
         }
     }

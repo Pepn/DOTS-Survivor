@@ -15,7 +15,7 @@ namespace DOTSSurvivor
         }
         protected override void OnUpdate()
         {
-            OnUpdateTotalEntities?.Invoke(GetEntityQuery(ComponentType.ReadWrite<MonsterData>()).CalculateEntityCount());
+            OnUpdateTotalEntities?.Invoke(GetEntityQuery(ComponentType.ReadOnly<MonsterData>()).CalculateEntityCount() + GetEntityQuery(ComponentType.ReadOnly<ProjectileData>()).CalculateEntityCount());
         }
     }
 }

@@ -13,13 +13,14 @@ namespace DOTSSurvivor
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
 
-                AddComponent<Projectile>(entity);
+                AddComponent<ProjectileData>(entity);
             }
         }
     }
 
-    public struct Projectile : IComponentData
+    public struct ProjectileData : IComponentData
     {
-        public float3 Velocity; 
+        public float3 Velocity;
+        public float TimeLeft;
     }
 }

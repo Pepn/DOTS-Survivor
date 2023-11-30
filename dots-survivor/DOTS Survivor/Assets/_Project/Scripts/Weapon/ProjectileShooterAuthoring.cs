@@ -8,6 +8,7 @@ namespace DOTSSurvivor
     {
         public float MovementSpeedMetersPerSecond = 5.0f;
         public GameObject Projectile;
+        public float ProjectileLifeTime = 5.0f;
 
         class Baker : Baker<ProjectileShootingAuthoring>
         {
@@ -18,6 +19,7 @@ namespace DOTSSurvivor
                 AddComponent(entity, new ProjectileShooter
                 {
                     Speed = authoring.MovementSpeedMetersPerSecond,
+                    ProjectileLifeTime = authoring.ProjectileLifeTime,
                     Projectile = GetEntity(authoring.Projectile, TransformUsageFlags.Dynamic),
                 });
             }
@@ -27,6 +29,7 @@ namespace DOTSSurvivor
     public struct ProjectileShooter : IComponentData
     {
         public float Speed; // meters per second
-        public Entity Projectile; // TODO HOW TO SET THIS IN EDITOR, NEXT HOW TO SPAWN PROJECTILECOMPONENT OR ASPECT TO ENTITY
+        public float ProjectileLifeTime;
+        public Entity Projectile;
     }
 }

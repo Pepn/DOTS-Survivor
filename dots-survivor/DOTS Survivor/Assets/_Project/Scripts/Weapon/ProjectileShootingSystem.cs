@@ -6,17 +6,19 @@ using Unity.Transforms;
 
 namespace DOTSSurvivor
 {
-    [UpdateInGroup(typeof(LateSimulationSystemGroup))]
     public partial struct ProjectileShootingSystem : ISystem
     {
         [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
+            state.RequireForUpdate<InputState>();
         }
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
+            var playerMovementDirection = SystemAPI.GetSingleton<InputState>();
+
             foreach (var (projectileShooter, localToWorld) in
                      SystemAPI.Query<ProjectileShooter, RefRO<LocalToWorld>>()
                          .WithAll<ProjectileShooter>())
@@ -30,9 +32,10 @@ namespace DOTSSurvivor
                     Scale = SystemAPI.GetComponent<LocalTransform>(projectileShooter.Projectile).Scale
                 });
 
-                state.EntityManager.SetComponentData(instance, new Projectile
+                state.EntityManager.SetComponentData(instance, new ProjectileData
                 {
-                    Velocity = localToWorld.ValueRO.Up * 20.0f
+                    Velocity = new float3(playerMovementDirection.Horizontal, playerMovementDirection.Vertical, 0) * 20.0f,
+                    TimeLeft = projectileShooter.ProjectileLifeTime
                 });
 
                 //state.EntityManager.SetComponentData(instance, new URPMaterialPropertyBaseColor
