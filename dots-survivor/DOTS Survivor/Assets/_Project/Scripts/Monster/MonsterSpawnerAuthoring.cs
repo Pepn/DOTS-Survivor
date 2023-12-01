@@ -7,6 +7,8 @@ namespace DOTSSurvivor
     public class MonsterSpawnerAuthoring : MonoBehaviour
     {
         public GameObject Prefab;
+        public float SpawnCooldown;
+        public int SpawnAmount;
 
         class Baker : Baker<MonsterSpawnerAuthoring>
         {
@@ -15,7 +17,9 @@ namespace DOTSSurvivor
                 var entity = GetEntity(TransformUsageFlags.None);
                 AddComponent(entity, new MonsterSpawner
                 {
-                    Prefab = GetEntity(authoring.Prefab, TransformUsageFlags.Dynamic)
+                    Prefab = GetEntity(authoring.Prefab, TransformUsageFlags.Dynamic),
+                    SpawnAmount = authoring.SpawnAmount,
+                    SpawnCooldown = authoring.SpawnCooldown,
                 });
             }
         }
@@ -24,5 +28,7 @@ namespace DOTSSurvivor
     struct MonsterSpawner : IComponentData
     {
         public Entity Prefab;
+        public float SpawnCooldown;
+        public int SpawnAmount;
     }
 }

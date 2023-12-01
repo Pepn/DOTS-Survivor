@@ -23,8 +23,10 @@ namespace DOTSSurvivor
             [BurstCompile]
             public void OnUpdate(ref SystemState state)
             {
-                const int count = 250;
-                const float spawnWait = 0.05f;  // 0.05 seconds
+                var monsterSpawner = SystemAPI.GetSingleton<MonsterSpawner>();
+
+                int count = monsterSpawner.SpawnAmount;
+                float spawnWait = monsterSpawner.SpawnCooldown;
 
                 spawnTimer -= SystemAPI.Time.DeltaTime;
                 if (spawnTimer > 0)
@@ -37,8 +39,7 @@ namespace DOTSSurvivor
                 var newSpawnQuery = SystemAPI.QueryBuilder().WithAll<Unspawned>().Build();
                 state.EntityManager.RemoveComponent<Unspawned>(newSpawnQuery);
 
-                // Spawn the boxes
-                var prefab = SystemAPI.GetSingleton<MonsterSpawner>().Prefab;
+                var prefab = monsterSpawner.Prefab;
                 state.EntityManager.Instantiate(prefab, count, Allocator.Temp);
 
                 // Get Player Pos
