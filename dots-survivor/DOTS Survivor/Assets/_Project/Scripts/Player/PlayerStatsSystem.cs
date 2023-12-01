@@ -16,7 +16,7 @@ namespace DOTSSurvivor
 
         protected override void OnUpdate()
         {
-            //OnUpdateHealth.Invoke(SystemAPI.GetSingleton<PlayerData>().CurrentHealth, 10f);
+            OnUpdateHealth?.Invoke(SystemAPI.GetSingleton<PlayerData>().CurrentHealth, 10f);
         }
     }
 }
