@@ -15,12 +15,12 @@ namespace DOTSSurvivor
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            //ref var inputState = ref SystemAPI.GetSingletonRW<InputState>().ValueRW;
-            //inputState.Horizontal = Input.GetAxisRaw("Horizontal");
-            //inputState.Vertical = Input.GetAxisRaw("Vertical");
-            //inputState.MouseX = Input.GetAxisRaw("Mouse X");
-            //inputState.MouseY = Input.GetAxisRaw("Mouse Y");
-            //inputState.Space = Input.GetKeyDown(KeyCode.Space);
+            ref var inputState = ref SystemAPI.GetSingletonRW<InputState>().ValueRW;
+            inputState.Horizontal = Input.GetAxisRaw("Horizontal");
+            inputState.Vertical = Input.GetAxisRaw("Vertical");
+            inputState.MouseX = Input.GetAxisRaw("Mouse X");
+            inputState.MouseY = Input.GetAxisRaw("Mouse Y");
+            inputState.Space = Input.GetKeyDown(KeyCode.Space);
         }
     }
 
