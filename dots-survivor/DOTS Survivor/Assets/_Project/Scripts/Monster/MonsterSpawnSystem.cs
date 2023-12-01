@@ -23,8 +23,8 @@ namespace DOTSSurvivor
             [BurstCompile]
             public void OnUpdate(ref SystemState state)
             {
-                const int count = 5;
-                const float spawnWait = 0.05f;  // 0.05 seconds
+                const int count = 50;
+                const float spawnWait = 10f;  // 0.05 seconds
 
                 spawnTimer -= SystemAPI.Time.DeltaTime;
                 if (spawnTimer > 0)
@@ -67,7 +67,7 @@ namespace DOTSSurvivor
             public float3 PlayerPos;
             public float MinSpawnDistance;
 
-            public void Execute([EntityIndexInQuery] int index, ref LocalTransform transform)
+            public void Execute([EntityIndexInQuery] int index, ref LocalTransform transform, ref MonsterData monsterData)
             {
                 // Random instances with similar seeds produce similar results, so to get proper
                 // randomness here, we use CreateFromIndex, which hashes the seed.
@@ -80,8 +80,10 @@ namespace DOTSSurvivor
                     radius * math.cos(angle),
                     radius * math.sin(angle),
                     0f);
-
+               
                 transform.Position = spawnPos;
+                monsterData.MovementSpeed = Random.CreateFromIndex((uint)index+ SeedOffset).NextFloat(1, 10f);
+
             }
         }
 

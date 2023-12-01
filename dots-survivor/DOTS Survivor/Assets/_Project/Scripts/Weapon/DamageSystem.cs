@@ -25,15 +25,15 @@ namespace DOTSSurvivor
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
-            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
-
-            var playerData = SystemAPI.GetSingletonRW<PlayerData>();
-            foreach (var (hit, entity) in SystemAPI.Query<DamageHit>().WithEntityAccess())
-            {
-                playerData.ValueRW.CurrentHealth -= hit.Damage;
-                ecb.DestroyEntity(entity);
-            }
+            //var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+            //var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
+            //
+            //var playerData = SystemAPI.GetSingletonRW<PlayerData>();
+            //foreach (var (hit, entity) in SystemAPI.Query<DamageHit>().WithEntityAccess())
+            //{
+            //    playerData.ValueRW.CurrentHealth -= hit.Damage;
+            //    ecb.DestroyEntity(entity);
+            //}
         }
     }
 }

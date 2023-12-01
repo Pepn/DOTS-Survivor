@@ -20,21 +20,21 @@ namespace DOTSSurvivor
 
         public void OnUpdate(ref SystemState state)
         {
-            state.Enabled = false;
-
-            var go = GameObject.Find("Directory");
-            if (go == null)
-            {
-                throw new Exception("GameObject 'Directory' not found.");
-            }
-
-            var directory = go.GetComponent<Directory>();
-
-            var directoryManaged = new DirectoryManaged();
-            directoryManaged.EntityCount = directory.EntityCount;
-
-            var entity = state.EntityManager.CreateEntity();
-            state.EntityManager.AddComponentData(entity, directoryManaged);
+           // state.Enabled = false;
+           //
+           // var go = GameObject.Find("Directory");
+           // if (go == null)
+           // {
+           //     throw new Exception("GameObject 'Directory' not found.");
+           // }
+           //
+           // var directory = go.GetComponent<Directory>();
+           //
+           // var directoryManaged = new DirectoryManaged();
+           // directoryManaged.EntityCount = directory.EntityCount;
+           //
+           // var entity = state.EntityManager.CreateEntity();
+           // state.EntityManager.AddComponentData(entity, directoryManaged);
         }
     }
 

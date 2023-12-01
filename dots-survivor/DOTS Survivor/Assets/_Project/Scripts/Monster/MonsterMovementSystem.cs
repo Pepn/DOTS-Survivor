@@ -5,12 +5,16 @@ using System.Collections.Generic;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
 using Unity.VisualScripting;
+using Unity.VisualScripting.FullSerializer;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
+using UnityEngine.Windows;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace DOTSSurvivor
 {
@@ -41,7 +45,6 @@ namespace DOTSSurvivor
 
                     // You can also add components to the new entity
                     ECB.AddComponent(newHitEntity, new DamageHit { Damage = 1.0f });
-
                 }
             }
         }
@@ -57,7 +60,7 @@ namespace DOTSSurvivor
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
-        {
+        {              
             // get player position //TODO: optimize
             var transformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true);
             var controllerEntity = SystemAPI.GetSingletonEntity<Controller>();
@@ -66,6 +69,30 @@ namespace DOTSSurvivor
 
             var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
 
+            var minDist = 0.3f;
+
+            var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
+
+
+            // check bullet monster collision
+            foreach (var (monsterTransform, monsterEntity) in
+                     SystemAPI.Query<RefRO<LocalTransform>>()
+                         .WithAll<MonsterData>().WithEntityAccess())
+            {
+                foreach (var (projectileTransform, projectileEntity) in
+                         SystemAPI.Query<RefRO<LocalTransform>>()
+                             .WithAll<ProjectileData>().WithEntityAccess())
+                {
+                    // If the new position intersects the player with a wall, don't move the player.
+                    if (math.distancesq(monsterTransform.ValueRO.Position, projectileTransform.ValueRO.Position) <= minDist)
+                    {
+                        ecb.DestroyEntity(monsterEntity);
+                        ecb.DestroyEntity(projectileEntity);
+                        break;
+                    }
+                }
+            }
+
             // Uses the BoidTarget query
             var job = new MoveMonsterJob()
             {
@@ -73,8 +100,8 @@ namespace DOTSSurvivor
                 TargetPos = controllerTransform.Position,
                 ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged),
             };
-
             job.Schedule(queryMonsters);
+
         }
     }
 }

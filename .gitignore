@@ -8,14 +8,12 @@
 */*/[Bb]uild/
 */*/[Bb]uilds/
 */*/[Ll]ogs/
+*/*/[Rr]ecordings/
 */*/[Uu]ser[Ss]ettings/
 
 # MemoryCaptures can get excessive in size.
 # They also could contain extremely sensitive data
 /[Mm]emoryCaptures/
-
-# Recordings can get excessive in size
-/[Rr]ecordings/
 
 # Uncomment this line if you wish to ignore the asset store tools plugin
 # /[Aa]ssets/AssetStoreTools*

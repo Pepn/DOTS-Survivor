@@ -16,9 +16,10 @@ namespace DOTSSurvivor
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
 
+
                 AddComponent(entity, new ProjectileShooter
                 {
-                    Speed = authoring.MovementSpeedMetersPerSecond,
+                    Speed = 25,//math.clamp(Unity.Mathematics.Random.CreateFromIndex(0).NextFloat(), 10f, 100f),
                     ProjectileLifeTime = authoring.ProjectileLifeTime,
                     Projectile = GetEntity(authoring.Projectile, TransformUsageFlags.Dynamic),
                 });
@@ -28,7 +29,7 @@ namespace DOTSSurvivor
 
     public struct ProjectileShooter : IComponentData
     {
-        public float Speed; // meters per second
+        public float Speed;
         public float ProjectileLifeTime;
         public Entity Projectile;
     }
