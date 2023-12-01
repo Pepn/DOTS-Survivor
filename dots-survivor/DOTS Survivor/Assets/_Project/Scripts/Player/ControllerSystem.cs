@@ -18,7 +18,7 @@ namespace DOTSSurvivor
         public void OnUpdate(ref SystemState state)
         {
             var input = SystemAPI.GetSingleton<InputState>();
-
+            
             foreach (var (transform, controller) in
                      SystemAPI.Query<RefRW<LocalTransform>, RefRW<Controller>>())
             {

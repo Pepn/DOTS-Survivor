@@ -18,17 +18,17 @@ namespace DOTSSurvivor
         // This OnUpdate accesses managed objects and so cannot be Burst-compiled
         public void OnUpdate(ref SystemState state)
         {
-            if (Camera.main != null)
-            {
-                var transformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true);
-                var controllerEntity = SystemAPI.GetSingletonEntity<Controller>();
-                var controllerTransform = transformLookup[controllerEntity];
-                var cameraTransform = Camera.main.transform;
-
-                var newCamPos = controllerTransform.Position + new float3(0, 0, -20);
-                // Set the camera position to the player's position
-                cameraTransform.position = math.lerp(cameraTransform.position, newCamPos, 0.3f);
-            }
+           if (Camera.main != null)
+           {
+               var transformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true);
+               var controllerEntity = SystemAPI.GetSingletonEntity<Controller>();
+               var controllerTransform = transformLookup[controllerEntity];
+               var cameraTransform = Camera.main.transform;
+           
+               var newCamPos = controllerTransform.Position + new float3(0, 0, -20);
+               // Set the camera position to the player's position
+               cameraTransform.position = math.lerp(cameraTransform.position, newCamPos, 0.3f);
+           }
         }
     }
 }
