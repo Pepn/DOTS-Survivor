@@ -45,15 +45,15 @@ namespace DOTSSurvivor
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            //var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
-            //
-            //var job = new MoveProjectileJob()
-            //{
-            //    DeltaTime = SystemAPI.Time.DeltaTime,
-            //    ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged),
-            //};
-            //
-            //job.Schedule(projectileQuery);
+            var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+            
+            var job = new MoveProjectileJob()
+            {
+                DeltaTime = SystemAPI.Time.DeltaTime,
+                ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged),
+            };
+            
+            job.Schedule(projectileQuery);
         }
     }
 }

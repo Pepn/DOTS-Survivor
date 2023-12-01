@@ -19,25 +19,25 @@ namespace DOTSSurvivor
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            //var playerInput = SystemAPI.GetSingleton<InputState>();
-            //var playerDirection = new float3(playerInput.Horizontal, playerInput.Vertical, 0);
-            //var playerDirectionNormalized = math.normalize(playerDirection);
-            //
-            //float3 offsetDir = CalculateDirection(playerDirectionNormalized, 10);
-            //float3 offsetDir2 = CalculateDirection(playerDirectionNormalized, -10);
-            //float3 offsetDir3 = CalculateDirection(playerDirectionNormalized, -20);
-            //float3 offsetDir4 = CalculateDirection(playerDirectionNormalized, 20);
-            //
-            //foreach (var (projectileShooter, localToWorld) in
-            //         SystemAPI.Query<ProjectileShooter, RefRO<LocalToWorld>>()
-            //             .WithAll<ProjectileShooter>())
-            //{
-            //    ShootInDirection(ref state, projectileShooter, localToWorld, playerDirection);
-            //    ShootInDirection(ref state, projectileShooter, localToWorld, offsetDir);
-            //    ShootInDirection(ref state, projectileShooter, localToWorld, offsetDir2);
-            //    ShootInDirection(ref state, projectileShooter, localToWorld, offsetDir3);
-            //    ShootInDirection(ref state, projectileShooter, localToWorld, offsetDir4);
-            //}
+            var playerInput = SystemAPI.GetSingleton<InputState>();
+            var playerDirection = new float3(playerInput.Horizontal, playerInput.Vertical, 0);
+            var playerDirectionNormalized = math.normalize(playerDirection);
+            
+            float3 offsetDir = CalculateDirection(playerDirectionNormalized, 10);
+            float3 offsetDir2 = CalculateDirection(playerDirectionNormalized, -10);
+            float3 offsetDir3 = CalculateDirection(playerDirectionNormalized, -20);
+            float3 offsetDir4 = CalculateDirection(playerDirectionNormalized, 20);
+            
+            foreach (var (projectileShooter, localToWorld) in
+                     SystemAPI.Query<ProjectileShooter, RefRO<LocalToWorld>>()
+                         .WithAll<ProjectileShooter>())
+            {
+                ShootInDirection(ref state, projectileShooter, localToWorld, playerDirection);
+                ShootInDirection(ref state, projectileShooter, localToWorld, offsetDir);
+                ShootInDirection(ref state, projectileShooter, localToWorld, offsetDir2);
+                ShootInDirection(ref state, projectileShooter, localToWorld, offsetDir3);
+                ShootInDirection(ref state, projectileShooter, localToWorld, offsetDir4);
+            }
         }
 
         private float3 CalculateDirection(float3 inputDirection, float angleOffset)
