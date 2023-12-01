@@ -23,8 +23,8 @@ namespace DOTSSurvivor
             [BurstCompile]
             public void OnUpdate(ref SystemState state)
             {
-                const int count = 50;
-                const float spawnWait = 10f;  // 0.05 seconds
+                const int count = 250;
+                const float spawnWait = 0.05f;  // 0.05 seconds
 
                 spawnTimer -= SystemAPI.Time.DeltaTime;
                 if (spawnTimer > 0)

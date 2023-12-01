@@ -15,6 +15,8 @@ namespace DOTSSurvivor
 
         private void OnEnable()
         {
+            Application.targetFrameRate = -1;
+
             var DisplayInfoSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<DisplayInfoSystem>();
             if(DisplayInfoSystem != null)
             {
