@@ -41,7 +41,7 @@ namespace DOTSSurvivor
         { 
             projectileQuery = SystemAPI.QueryBuilder().WithAll<ProjectileData, LocalTransform>().Build();
         }
-
+        
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {

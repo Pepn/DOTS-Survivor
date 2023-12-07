@@ -40,10 +40,9 @@ namespace DOTSSurvivor
                 if (math.distancesq(transform.Position, TargetPos) <= 2.0f)
                 {
                     ECB.DestroyEntity(entity);
-                    // Example: create a new entity
-                    var newHitEntity = ECB.CreateEntity();
 
-                    // You can also add components to the new entity
+                    // Create dmg entity, todo make this some buffer or smth
+                    var newHitEntity = ECB.CreateEntity();
                     ECB.AddComponent(newHitEntity, new DamageHit { Damage = 1.0f });
                 }
             }
@@ -73,7 +72,7 @@ namespace DOTSSurvivor
 
             var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
-
+            var experienceSpawner = SystemAPI.GetSingletonRW<ExperienceSpawner>();
             // check bullet monster collision
             foreach (var (monsterTransform, monsterEntity) in
                      SystemAPI.Query<RefRO<LocalTransform>>()
@@ -83,11 +82,19 @@ namespace DOTSSurvivor
                          SystemAPI.Query<RefRO<LocalTransform>>()
                              .WithAll<ProjectileData>().WithEntityAccess())
                 {
-                    // If the new position intersects the player with a wall, don't move the player.
                     if (math.distancesq(monsterTransform.ValueRO.Position, projectileTransform.ValueRO.Position) <= minDist)
                     {
                         ecb.DestroyEntity(monsterEntity);
                         ecb.DestroyEntity(projectileEntity);
+
+                        // Spawn XP
+                        var newXPEntity = ecb.Instantiate(experienceSpawner.ValueRO.XPPrefab);
+                        ecb.AddComponent(newXPEntity, new LocalTransform
+                        {
+                            Position = new float3(monsterTransform.ValueRO.Position.x, monsterTransform.ValueRO.Position.y, 0f),
+                            Rotation = quaternion.Euler(new float3(45f, 45f, 45f)),
+                            Scale = 1.0f,
+                        });
                         break;
                     }
                 }

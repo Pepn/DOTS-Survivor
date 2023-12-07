@@ -17,6 +17,7 @@ namespace DOTSSurvivor
             if (DisplayInfoSystem != null)
             {
                 DisplayInfoSystem.OnUpdateHealth += UpdateHP;
+                DisplayInfoSystem.OnUpdateXP += UpdateXP;
             }
             else
             {
@@ -26,12 +27,12 @@ namespace DOTSSurvivor
 
         private void UpdateHP(float hp, float maxHealth)
         {
-            hpTmp.text = $"HP asdf: {hp.ToString()} MAX: {maxHealth}";
+            hpTmp.text = $"HP asdf: {hp} MAX: {maxHealth}";
         }
 
         private void UpdateXP(float xp)
         {
-            hpTmp.text = $"XP: {xp.ToString()}";
+            xpTmp.text = $"XP: {xp}";
         }
 
         private void Update()

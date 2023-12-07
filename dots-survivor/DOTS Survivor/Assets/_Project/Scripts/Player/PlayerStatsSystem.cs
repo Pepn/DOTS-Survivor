@@ -8,6 +8,7 @@ namespace DOTSSurvivor
     public partial class PlayerStateSystem : SystemBase
     {
         public Action<float, float> OnUpdateHealth;
+        public Action<float> OnUpdateXP;
 
         protected override void OnCreate()
         {
@@ -17,6 +18,7 @@ namespace DOTSSurvivor
         protected override void OnUpdate()
         {
             OnUpdateHealth?.Invoke(SystemAPI.GetSingleton<PlayerData>().CurrentHealth, 10f);
+            OnUpdateXP?.Invoke(SystemAPI.GetSingleton<PlayerData>().CurrentXP);
         }
     }
 }
