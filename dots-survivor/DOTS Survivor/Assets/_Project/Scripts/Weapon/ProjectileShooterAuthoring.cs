@@ -9,6 +9,8 @@ namespace DOTSSurvivor
         public float MovementSpeedMetersPerSecond = 5.0f;
         public GameObject Projectile;
         public float ProjectileLifeTime = 5.0f;
+        public float ShootingAngle = 0;
+        public GameObject TrackingEntity;
 
         class Baker : Baker<ProjectileShootingAuthoring>
         {
@@ -16,12 +18,13 @@ namespace DOTSSurvivor
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
 
-
                 AddComponent(entity, new ProjectileShooter
                 {
                     Speed = 25,//math.clamp(Unity.Mathematics.Random.CreateFromIndex(0).NextFloat(), 10f, 100f),
                     ProjectileLifeTime = authoring.ProjectileLifeTime,
+                    ShootingAngle = authoring.ShootingAngle,
                     Projectile = GetEntity(authoring.Projectile, TransformUsageFlags.Dynamic),
+                    TrackingEntity = GetEntity(authoring.TrackingEntity, TransformUsageFlags.Dynamic)
                 });
             }
         }
@@ -31,6 +34,8 @@ namespace DOTSSurvivor
     {
         public float Speed;
         public float ProjectileLifeTime;
+        public float ShootingAngle;
         public Entity Projectile;
+        public Entity TrackingEntity;
     }
 }

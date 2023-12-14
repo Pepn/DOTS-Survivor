@@ -31,7 +31,7 @@ namespace DOTSSurvivor
             var directory = go.GetComponent<Directory>();
             
             var directoryManaged = new DirectoryManaged();
-            directoryManaged.EntityCount = directory.EntityCount;
+            directoryManaged.PlayerSync = directory.PlayerSync;
             
             var entity = state.EntityManager.CreateEntity();
             state.EntityManager.AddComponentData(entity, directoryManaged);
@@ -40,11 +40,11 @@ namespace DOTSSurvivor
 
     public class DirectoryManaged : IComponentData
     {
-        public TextMeshProUGUI EntityCount;
+        public PlayerSync PlayerSync;
 
         // Every IComponentData class must have a no-arg constructor.
         public DirectoryManaged()
-        {
+        {   
         }
     }
 }

@@ -73,6 +73,7 @@ namespace DOTSSurvivor
             var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
             var experienceSpawner = SystemAPI.GetSingletonRW<ExperienceSpawner>();
+            Unity.Mathematics.Random rng = Unity.Mathematics.Random.CreateFromIndex(0);
             // check bullet monster collision
             foreach (var (monsterTransform, monsterEntity) in
                      SystemAPI.Query<RefRO<LocalTransform>>()
@@ -87,7 +88,14 @@ namespace DOTSSurvivor
                         ecb.DestroyEntity(monsterEntity);
                         ecb.DestroyEntity(projectileEntity);
 
-                        // Spawn XP
+                        float r = rng.NextFloat(0f, 1f);
+                        Debug.Log(r);
+                        // Spawn XP chance based
+                        if (r < experienceSpawner.ValueRO.SpawnChance)
+                        {
+                            break;
+                        }
+
                         var newXPEntity = ecb.Instantiate(experienceSpawner.ValueRO.XPPrefab);
                         ecb.AddComponent(newXPEntity, new LocalTransform
                         {

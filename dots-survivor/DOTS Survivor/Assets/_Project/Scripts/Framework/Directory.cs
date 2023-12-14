@@ -12,6 +12,6 @@ namespace DOTSSurvivor
 
     public class Directory : MonoBehaviour
     {
-        public TextMeshProUGUI EntityCount;
+        public PlayerSync PlayerSync;
     }
 }
