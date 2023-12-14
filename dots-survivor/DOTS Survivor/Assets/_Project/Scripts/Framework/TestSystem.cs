@@ -27,7 +27,7 @@ namespace DOTSSurvivor
                      SystemAPI.Query<DirectoryManaged>()
                          .WithEntityAccess())
             {
-                Debug.Log(dir.PlayerSync.life);
+                //Debug.Log(dir.PlayerSync.life);
                 dir.PlayerSync.life = 10;
             }
         }
