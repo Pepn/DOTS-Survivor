@@ -1,9 +1,11 @@
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Transforms;
 using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering.VirtualTexturing;
+using static UnityEngine.EventSystems.EventTrigger;
 
 namespace DOTSSurvivor
 {
@@ -24,21 +26,33 @@ namespace DOTSSurvivor
             // assume all upgrades are unique
             if (player.PlayerUpgradeHexagons.ValueRO)
             {
-                Debug.LogWarning("Player Upgrade Hexagon Enabled!");
+                //Debug.LogWarning("Player Upgrade Hexagon Enabled!");
             }
             else
             {
-                Debug.LogWarning("Player Upgrade Hexagon NOT ENABLED!");
+                //Debug.LogWarning("Player Upgrade Hexagon NOT ENABLED!");
             }
 
             // assume all upgrades are unique
             if (player.PlayerUpgradeIncreaseDamage.ValueRO)
             {
+                foreach (var projectileShooter in SystemAPI.Query<RefRW<ProjectileShooter>>())
+                {
+                    // perhaps projectileShooters should have different Component that contains the tracking entity
+                    // this way it should be easier queryable
+                    if(projectileShooter.ValueRO.TrackingEntity == player.self)
+                    {
+                        Debug.LogWarning("PlayerUpgradeIncreaseDamage!");
+                        projectileShooter.ValueRW.Damage += 1.0f;
+                    }
+                }
+
                 Debug.LogWarning("PlayerUpgradeIncreaseDamage Enabled!");
+                player.PlayerUpgradeIncreaseDamage.ValueRW = false;
             }
             else
             {
-                Debug.LogWarning("PlayerUpgradeIncreaseDamage NOT ENABLED!");
+                //Debug.LogWarning("PlayerUpgradeIncreaseDamage NOT ENABLED!");
             }
         }
     }
