@@ -156,6 +156,7 @@ MonoBehaviour:
   Projectile: {fileID: 5523070719207710993, guid: e6f4b7f2b130db54f84a4b35e36b6686,
     type: 3}
   ProjectileLifeTime: 5
+  ShootingAngle: 0
   TrackingEntity: {fileID: 1082744222}
 --- !u!4 &74412866
 Transform:
@@ -338,6 +339,7 @@ GameObject:
   - component: {fileID: 1082744223}
   - component: {fileID: 1082744227}
   - component: {fileID: 1082744228}
+  - component: {fileID: 1082744229}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -460,6 +462,118 @@ MonoBehaviour:
   CurrentHealth: 10
   CurrentXP: 0
   CurrentLevel: 1
+--- !u!114 &1082744229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1082744222}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d7a4b2786d8b09f4f96f3d83ebbeaf93, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!1 &1201466548
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1201466550}
+  - component: {fileID: 1201466549}
+  m_Layer: 0
+  m_Name: ProjectileShooter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1201466549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201466548}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd9755cee46e9e418b8a868b919a07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeedMetersPerSecond: 5
+  Projectile: {fileID: 5523070719207710993, guid: e6f4b7f2b130db54f84a4b35e36b6686,
+    type: 3}
+  ProjectileLifeTime: 5
+  ShootingAngle: 20
+  TrackingEntity: {fileID: 1082744222}
+--- !u!4 &1201466550
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1201466548}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1375.6165, y: 1139.426, z: 175.20642}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1578435345
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1578435347}
+  - component: {fileID: 1578435346}
+  m_Layer: 0
+  m_Name: ProjectileShooter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1578435346
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578435345}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd9755cee46e9e418b8a868b919a07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeedMetersPerSecond: 5
+  Projectile: {fileID: 5523070719207710993, guid: e6f4b7f2b130db54f84a4b35e36b6686,
+    type: 3}
+  ProjectileLifeTime: 5
+  ShootingAngle: -20
+  TrackingEntity: {fileID: 1082744222}
+--- !u!4 &1578435347
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1578435345}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1375.6165, y: 1139.426, z: 175.20642}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1838863463
 GameObject:
   m_ObjectHideFlags: 0
@@ -507,6 +621,106 @@ MonoBehaviour:
   Prefab: {fileID: 5533735507253762040, guid: 8e3df99a5704d65439d06f4496be3025, type: 3}
   SpawnCooldown: 1
   SpawnAmount: 100
+--- !u!1 &1983639348
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1983639350}
+  - component: {fileID: 1983639349}
+  m_Layer: 0
+  m_Name: ProjectileShooter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1983639349
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983639348}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd9755cee46e9e418b8a868b919a07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeedMetersPerSecond: 5
+  Projectile: {fileID: 5523070719207710993, guid: e6f4b7f2b130db54f84a4b35e36b6686,
+    type: 3}
+  ProjectileLifeTime: 5
+  ShootingAngle: 10
+  TrackingEntity: {fileID: 1082744222}
+--- !u!4 &1983639350
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1983639348}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1375.6165, y: 1139.426, z: 175.20642}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &2013364473
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2013364475}
+  - component: {fileID: 2013364474}
+  m_Layer: 0
+  m_Name: ProjectileShooter
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2013364474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013364473}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ddd9755cee46e9e418b8a868b919a07a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MovementSpeedMetersPerSecond: 5
+  Projectile: {fileID: 5523070719207710993, guid: e6f4b7f2b130db54f84a4b35e36b6686,
+    type: 3}
+  ProjectileLifeTime: 5
+  ShootingAngle: -10
+  TrackingEntity: {fileID: 1082744222}
+--- !u!4 &2013364475
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2013364473}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1375.6165, y: 1139.426, z: 175.20642}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
@@ -516,3 +730,7 @@ SceneRoots:
   - {fileID: 1838863464}
   - {fileID: 269130489}
   - {fileID: 74412866}
+  - {fileID: 2013364475}
+  - {fileID: 1983639350}
+  - {fileID: 1578435347}
+  - {fileID: 1201466550}
