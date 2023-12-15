@@ -19,10 +19,10 @@ namespace DOTSSurvivor
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            Entity player = SystemAPI.GetSingletonEntity<Controller>();
+            PlayerAspect player = SystemAPI.GetAspect<PlayerAspect>(SystemAPI.GetSingletonEntity<Controller>());
 
             // assume all upgrades are unique
-            if (state.EntityManager.IsComponentEnabled<PlayerUpgradeHexagons>(player))
+            if (player.PlayerUpgradeHexagons.ValueRO)
             {
                 Debug.LogWarning("Player Upgrade Hexagon Enabled!");
             }
@@ -32,7 +32,7 @@ namespace DOTSSurvivor
             }
 
             // assume all upgrades are unique
-            if (state.EntityManager.IsComponentEnabled<PlayerUpgradeIncreaseDamage>(player))
+            if (player.PlayerUpgradeIncreaseDamage.ValueRO)
             {
                 Debug.LogWarning("PlayerUpgradeIncreaseDamage Enabled!");
             }
