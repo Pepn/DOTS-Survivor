@@ -1412,7 +1412,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   life: 5
-  acquiredSkills: []
+  possibleUpgrades: []
 --- !u!1 &796549671
 GameObject:
   m_ObjectHideFlags: 0
@@ -2679,6 +2679,50 @@ MonoBehaviour:
   - {fileID: 11400000, guid: d34d0fc5bad46014d97d67e51ae5a485, type: 2}
   - {fileID: 11400000, guid: 5f540e5276ea73944ba3404e8d40e64f, type: 2}
   containerPanel: {fileID: 122430064}
+--- !u!1 &1792192777
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1792192778}
+  - component: {fileID: 1792192779}
+  m_Layer: 0
+  m_Name: LevelUpManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1792192778
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792192777}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1792192779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1792192777}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 01486f3c4641b784a834b13f0ca00692, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1909003217
 GameObject:
   m_ObjectHideFlags: 0
@@ -3437,6 +3481,7 @@ SceneRoots:
   - {fileID: 410087041}
   - {fileID: 832575519}
   - {fileID: 671736064}
+  - {fileID: 1792192778}
   - {fileID: 2096092725}
   - {fileID: 627243941}
   - {fileID: 1082744224}
