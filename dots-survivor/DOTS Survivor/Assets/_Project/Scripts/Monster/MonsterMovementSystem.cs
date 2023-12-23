@@ -93,7 +93,8 @@ namespace DOTSSurvivor
                         // Spawn XP chance based
                         if (r > experienceSpawner.ValueRO.SpawnChance)
                         {
-                            break;
+                            //Debug.Log($"{r} bigger than {experienceSpawner.ValueRO.SpawnChance} dont spawn!");
+                            continue;
                         }
 
                         var newXPEntity = ecb.Instantiate(experienceSpawner.ValueRO.XPPrefab);
