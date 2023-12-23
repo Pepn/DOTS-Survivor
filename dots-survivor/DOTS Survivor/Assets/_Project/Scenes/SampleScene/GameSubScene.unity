@@ -157,6 +157,7 @@ MonoBehaviour:
     type: 3}
   ProjectileLifeTime: 5
   ShootingAngle: 0
+  Damage: 1
   TrackingEntity: {fileID: 1082744222}
 --- !u!4 &74412866
 Transform:
@@ -203,7 +204,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Prefab: {fileID: 1407612410186146945, guid: 0ddc8950e7600144b943b8b66f2a4f47, type: 3}
-  SpawnChance: 0.1
+  SpawnChance: 0.25
 --- !u!4 &269130489
 Transform:
   m_ObjectHideFlags: 0
@@ -508,6 +509,7 @@ MonoBehaviour:
     type: 3}
   ProjectileLifeTime: 5
   ShootingAngle: 20
+  Damage: 1
   TrackingEntity: {fileID: 1082744222}
 --- !u!4 &1201466550
 Transform:
@@ -558,6 +560,7 @@ MonoBehaviour:
     type: 3}
   ProjectileLifeTime: 5
   ShootingAngle: -20
+  Damage: 1
   TrackingEntity: {fileID: 1082744222}
 --- !u!4 &1578435347
 Transform:
@@ -655,6 +658,7 @@ MonoBehaviour:
     type: 3}
   ProjectileLifeTime: 5
   ShootingAngle: 10
+  Damage: 1
   TrackingEntity: {fileID: 1082744222}
 --- !u!4 &1983639350
 Transform:
@@ -705,6 +709,7 @@ MonoBehaviour:
     type: 3}
   ProjectileLifeTime: 5
   ShootingAngle: -10
+  Damage: 1
   TrackingEntity: {fileID: 1082744222}
 --- !u!4 &2013364475
 Transform:

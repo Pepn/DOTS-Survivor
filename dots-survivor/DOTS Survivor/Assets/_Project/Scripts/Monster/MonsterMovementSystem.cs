@@ -89,9 +89,9 @@ namespace DOTSSurvivor
                         ecb.DestroyEntity(projectileEntity);
 
                         float r = rng.NextFloat(0f, 1f);
-                        //Debug.Log(r);
+
                         // Spawn XP chance based
-                        if (r < experienceSpawner.ValueRO.SpawnChance)
+                        if (r > experienceSpawner.ValueRO.SpawnChance)
                         {
                             break;
                         }
