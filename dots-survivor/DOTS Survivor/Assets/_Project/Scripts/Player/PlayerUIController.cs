@@ -10,6 +10,8 @@ namespace DOTSSurvivor
     {
         [SerializeField] private TextMeshProUGUI hpTmp;
         [SerializeField] private TextMeshProUGUI xpTmp;
+        private float hp, xp, score;
+        private float scoreMultiplier;
 
         private void OnEnable()
         {
@@ -27,12 +29,21 @@ namespace DOTSSurvivor
 
         private void UpdateHP(float hp, float maxHealth)
         {
-            hpTmp.text = $"HP asdf: {hp} MAX: {maxHealth}";
+            this.hp = hp;
+            hpTmp.text = $"HP asdf: {this.hp} MAX: {maxHealth}";
+
+            // game over
+            if(hp <= 0)
+            {
+                Time.timeScale = 0;
+                FindObjectOfType<DeathScreen>(true).gameObject.SetActive(true);
+            }
         }
 
         private void UpdateXP(float xp)
         {
-            xpTmp.text = $"XP: {xp}";
+            this.xp = xp;
+            xpTmp.text = $"XP: {this.xp}";
         }
 
         private void Update()
