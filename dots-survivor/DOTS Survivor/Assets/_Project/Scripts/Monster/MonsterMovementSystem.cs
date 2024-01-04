@@ -2,9 +2,11 @@ using DOTSSurvivor;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
+using Unity.Entities.UniversalDelegates;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -14,7 +16,6 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.Windows;
-using static UnityEngine.EventSystems.EventTrigger;
 
 namespace DOTSSurvivor
 {
@@ -27,11 +28,26 @@ namespace DOTSSurvivor
             public float DeltaTime;
             public float3 TargetPos;
             public EntityCommandBuffer ECB;
-            // Iterates over all SampleCo  mponents and increments their value
-            public void Execute(ref MonsterData sample, ref LocalTransform transform, Entity entity)
+            public uint SeedOffset;
+
+            // Iterates over all SampleComponents and increments their value
+            public void Execute([EntityIndexInQuery] int index, ref MonsterData sample, ref LocalTransform transform, Entity entity)
             {
+                // Random instances with similar seeds produce similar results, so to get proper
+                // randomness here, we use CreateFromIndex, which hashes the seed.
+                var random = Unity.Mathematics.Random.CreateFromIndex(SeedOffset + (uint)index);
+
+                var offset = random.NextFloat3Direction() * 25.0f;
+                //Debug.Log(offset);
+                offset.z = 0;
+
+                // Calculate the distance
+                float distance = math.distance(TargetPos, transform.Position);
+                float distanceHeuristicallyNormalized = distance / 50.0f;
+                float3 offsetLerped = math.lerp(float3.zero, offset, distanceHeuristicallyNormalized);
+
                 // Calculate the direction vector from current position to target position
-                float3 direction = math.normalize(TargetPos - transform.Position);
+                float3 direction = math.normalize(TargetPos + offsetLerped - transform.Position);
 
                 // Move towards the target position with a constant speed
                 transform.Position += direction * sample.MovementSpeed * DeltaTime;
@@ -49,6 +65,7 @@ namespace DOTSSurvivor
         }
 
         EntityQuery queryMonsters;
+        uint seedOffset;
 
         [BurstCompile]
         public void OnCreate(ref SystemState state)
@@ -75,6 +92,7 @@ namespace DOTSSurvivor
 
             var experienceSpawner = SystemAPI.GetSingletonRW<ExperienceSpawner>();
             Unity.Mathematics.Random rng = Unity.Mathematics.Random.CreateFromIndex(0);
+
             // check bullet monster collision
             foreach (var (monsterTransform, monsterEntity) in
                      SystemAPI.Query<RefRO<LocalTransform>>()
@@ -110,9 +128,12 @@ namespace DOTSSurvivor
                 }
             }
 
+            //seedOffset += 1337;
+
             // Uses the BoidTarget query
             var job = new MoveMonsterJob()
             {
+                SeedOffset = seedOffset,
                 DeltaTime = SystemAPI.Time.DeltaTime,
                 TargetPos = controllerTransform.Position,
                 ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged),
