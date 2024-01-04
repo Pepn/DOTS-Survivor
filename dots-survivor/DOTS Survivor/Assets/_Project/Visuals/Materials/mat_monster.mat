@@ -21,7 +21,7 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: mat_monster
-  m_Shader: {fileID: -6465566751694194690, guid: 8c6539c68b7a88c4b90b59fae1e33ca3,
+  m_Shader: {fileID: -6465566751694194690, guid: 6756355642c83f343811bafd0840c16c,
     type: 3}
   m_Parent: {fileID: 0}
   m_ModifiedSerializedProperties: 0
@@ -37,6 +37,14 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
+    - MainTex:
+        m_Texture: {fileID: 0}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
+    - Mask_R_Emission:
+        m_Texture: {fileID: 2800000, guid: f07d413a510a3754caed8568c6444602, type: 3}
+        m_Scale: {x: 1, y: 1}
+        m_Offset: {x: 0, y: 0}
     - _BaseMap:
         m_Texture: {fileID: 0}
         m_Scale: {x: 100, y: 100}
@@ -99,6 +107,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
+    - Brightness_Rim: 5
+    - Rim_Power: 0
+    - Toon_Ramp_Offset: 1
+    - Toon_Ramp_Smoothness: 0.5
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -133,8 +145,9 @@ Material:
     - _lightningCutoff: 0.2
     - _shadowBrightness: 0.3
     m_Colors:
+    - Toon_Ramp_Tint: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
     - _BaseColor: {r: 0.6301887, g: 0, b: 0.498234, a: 1}
-    - _Color: {r: 0.6301887, g: 0, b: 0.49823397, a: 1}
+    - _Color: {r: 0.022602202, g: 0.1874453, b: 0.35165277, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WorldSpaceLightPos0: {r: 0, g: 0, b: 0, a: 0}

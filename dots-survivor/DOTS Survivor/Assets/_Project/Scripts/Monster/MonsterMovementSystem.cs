@@ -54,6 +54,7 @@ namespace DOTSSurvivor
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<PlayerData>();
+            state.RequireForUpdate<InputState>();
             queryMonsters = SystemAPI.QueryBuilder().WithAll<MonsterData, LocalTransform>().Build();
         }
 

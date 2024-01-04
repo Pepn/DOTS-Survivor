@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Entities;
+using Unity.Scenes;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -32,12 +34,32 @@ public class DeathScreen : MonoBehaviour
 
     private void CleanUpEntities()
     {
-        var em = World.DefaultGameObjectInjectionWorld.EntityManager;
-        var entities = em.GetAllEntities();
-        for (var i = 0; i < entities.Length; ++i)
-        {
-            em.DestroyEntity(entities[i]);
-        }
+        // 1
+        //Unity.Entities.World.DisposeAllWorlds();
+        //var entityManager = Unity.Entities.World.DefaultGameObjectInjectionWorld.EntityManager;
+        //entityManager.DestroyEntity(entityManager.UniversalQuery);
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        World.DisposeAllWorlds();
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#endif
+        Application.Quit();
+
+        // 2 
+        // Destroy all entities in the current world
+        //var entityManager = World.DefaultGameObjectInjectionWorld.EntityManager;
+        //entityManager.DestroyEntity(entityManager.UniversalQuery);
+        //
+        //// Load the desired scene
+        //SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+
+        //3
+        // Dispose the current ECS world
+        //World.DisposeAllWorlds();
+        //
+        //// Initialize a new ECS world with the desired scene
+        //DefaultWorldInitialization.Initialize("SampleScene", false);
+        //ScriptBehaviourUpdateOrder.AppendWorldToCurrentPlayerLoop(World.DefaultGameObjectInjectionWorld);
     }
 
     public void ReloadLevel()

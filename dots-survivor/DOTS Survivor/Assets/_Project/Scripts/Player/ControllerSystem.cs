@@ -14,6 +14,7 @@ namespace DOTSSurvivor
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<InputState>();
+            state.RequireForUpdate<PlayerData>();
 
         }
 

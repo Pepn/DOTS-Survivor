@@ -13,6 +13,7 @@ namespace DOTSSurvivor
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<Controller>();
+            state.RequireForUpdate<InputState>();
         }
 
         // This OnUpdate accesses managed objects and so cannot be Burst-compiled
