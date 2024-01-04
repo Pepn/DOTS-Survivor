@@ -35,7 +35,7 @@ namespace DOTSSurvivor
             // game over
             if(hp <= 0)
             {
-                Time.timeScale = 0;
+                GameStateManager.Instance.PauseGame();
                 FindObjectOfType<DeathScreen>(true).gameObject.SetActive(true);
             }
         }

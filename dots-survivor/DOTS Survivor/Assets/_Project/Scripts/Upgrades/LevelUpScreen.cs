@@ -36,6 +36,15 @@ namespace DOTSSurvivor
             selectSkillButtons[2].Skill = possibleSkills[slot3];
 
             containerPanel.SetActive(true);
+
+            //pause game
+            GameStateManager.Instance.PauseGame();
+        }
+
+        public void OnDisable()
+        {
+            //pause game
+            GameStateManager.Instance.UnpauseGame();
         }
     }
 }

@@ -37,5 +37,8 @@ public class SelectSkillButton : MonoBehaviour
         Debug.LogWarning("Test Clicky");
         skill.skillFunction?.Invoke();
         transform.parent.gameObject.SetActive(false);
+
+        // unpause game
+        GameStateManager.Instance.UnpauseGame();
     }
 }
