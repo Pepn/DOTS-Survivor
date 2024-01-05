@@ -158,6 +158,7 @@ MonoBehaviour:
   ProjectileLifeTime: 5
   ShootingAngle: 0
   Damage: 1
+  AttackSpeed: 0.1
   TrackingEntity: {fileID: 1082744222}
 --- !u!4 &74412866
 Transform:
@@ -510,6 +511,7 @@ MonoBehaviour:
   ProjectileLifeTime: 5
   ShootingAngle: 20
   Damage: 1
+  AttackSpeed: 0.1
   TrackingEntity: {fileID: 1082744222}
 --- !u!4 &1201466550
 Transform:
@@ -561,6 +563,7 @@ MonoBehaviour:
   ProjectileLifeTime: 5
   ShootingAngle: -20
   Damage: 1
+  AttackSpeed: 0.1
   TrackingEntity: {fileID: 1082744222}
 --- !u!4 &1578435347
 Transform:
@@ -659,6 +662,7 @@ MonoBehaviour:
   ProjectileLifeTime: 5
   ShootingAngle: 10
   Damage: 1
+  AttackSpeed: 0.1
   TrackingEntity: {fileID: 1082744222}
 --- !u!4 &1983639350
 Transform:
@@ -710,6 +714,7 @@ MonoBehaviour:
   ProjectileLifeTime: 5
   ShootingAngle: -10
   Damage: 1
+  AttackSpeed: 0.1
   TrackingEntity: {fileID: 1082744222}
 --- !u!4 &2013364475
 Transform:

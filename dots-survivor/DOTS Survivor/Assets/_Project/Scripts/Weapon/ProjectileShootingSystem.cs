@@ -2,6 +2,7 @@ using System;
 using System.Diagnostics;
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Entities.UniversalDelegates;
 using Unity.Mathematics;
 using Unity.Rendering;
 using Unity.Transforms;
@@ -24,13 +25,13 @@ namespace DOTSSurvivor
             var playerDirectionNormalized = math.normalize(playerDirection);
 
             foreach (var (projectileShooter, localToWorld, entity) in
-                     SystemAPI.Query<ProjectileShooter, RefRO<LocalToWorld>>()
+                     SystemAPI.Query<RefRW<ProjectileShooter>, RefRO<LocalToWorld>>()
                          .WithAll<ProjectileShooter>().WithEntityAccess())
             {
                 // Get Player Pos
                 var transformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true);
                 var controllerEntity = SystemAPI.GetSingletonEntity<Controller>();
-                var controllerTransform = transformLookup[projectileShooter.TrackingEntity];
+                var controllerTransform = transformLookup[projectileShooter.ValueRO.TrackingEntity];
 
                 state.EntityManager.SetComponentData(entity, new LocalTransform
                 {
@@ -39,10 +40,17 @@ namespace DOTSSurvivor
                     Scale = 1.0f
                 });
 
-                float3 offsetDir = CalculateDirection(playerDirectionNormalized, projectileShooter.ShootingAngle);
+                float3 offsetDir = CalculateDirection(playerDirectionNormalized, projectileShooter.ValueRO.ShootingAngle);
 
-                ShootInDirection(ref state, projectileShooter, localToWorld, playerDirection);
-                ShootInDirection(ref state, projectileShooter, localToWorld, offsetDir);
+                // check if we should shoot, if we do this check earlier the bullet spawns behind us for some reason..
+                projectileShooter.ValueRW.Timer += SystemAPI.Time.DeltaTime;
+                if (projectileShooter.ValueRW.Timer > projectileShooter.ValueRO.AttackSpeed)
+                {
+                    projectileShooter.ValueRW.Timer = 0;
+                    //ShootInDirection(ref state, projectileShooter, localToWorld, playerDirection);
+                    ShootInDirection(ref state, projectileShooter.ValueRW, localToWorld, offsetDir);
+                }
+
             }
         }
 

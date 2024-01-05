@@ -1,6 +1,7 @@
 using Unity.Entities;
 using Unity.Mathematics;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace DOTSSurvivor
 {
@@ -11,6 +12,7 @@ namespace DOTSSurvivor
         public float ProjectileLifeTime = 5.0f;
         public float ShootingAngle = 0;
         public float Damage = 1.0f;
+        public float AttackSpeed;
         public GameObject TrackingEntity;
 
         class Baker : Baker<ProjectileShootingAuthoring>
@@ -25,8 +27,10 @@ namespace DOTSSurvivor
                     ProjectileLifeTime = authoring.ProjectileLifeTime,
                     ShootingAngle = authoring.ShootingAngle,
                     Damage = authoring.Damage,
+                    AttackSpeed = authoring.AttackSpeed,
+                    Timer = authoring.AttackSpeed,
                     Projectile = GetEntity(authoring.Projectile, TransformUsageFlags.Dynamic),
-                    TrackingEntity = GetEntity(authoring.TrackingEntity, TransformUsageFlags.Dynamic)
+                    TrackingEntity = GetEntity(authoring.TrackingEntity, TransformUsageFlags.Dynamic),
                 });
             }
         }
@@ -38,6 +42,8 @@ namespace DOTSSurvivor
         public float ProjectileLifeTime;
         public float ShootingAngle;
         public float Damage;
+        public float AttackSpeed;
+        [ReadOnly] public float Timer;
         public Entity Projectile;
         public Entity TrackingEntity;
     }
