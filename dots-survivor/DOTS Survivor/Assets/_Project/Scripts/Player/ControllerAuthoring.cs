@@ -1,5 +1,7 @@
 using Unity.Entities;
+using Unity.Mathematics;
 using UnityEngine;
+using Sirenix.OdinInspector;
 
 namespace DOTSSurvivor
 {
@@ -15,6 +17,7 @@ namespace DOTSSurvivor
                 AddComponent(entity, new Controller
                 {
                     player_speed = authoring.player_speed,
+                    Direction = float3.zero,
                 });
             }
         }
@@ -23,6 +26,7 @@ namespace DOTSSurvivor
     public struct Controller : IComponentData
     {
         public float player_speed;
+        [ReadOnly] public float3 Direction;
     }
 }
 

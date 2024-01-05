@@ -31,6 +31,11 @@ namespace DOTSSurvivor
             {
                 // Move around with WASD
                 var move = new float3(input.Horizontal, input.Vertical, 0);
+                if(move.x != 0 || move.y != 0)
+                {
+                    controller.ValueRW.Direction = move;
+                }
+
                 move = move * controller.ValueRO.player_speed * SystemAPI.Time.DeltaTime;
                 transform.ValueRW.Position += move;
 

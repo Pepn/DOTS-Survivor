@@ -20,8 +20,8 @@ namespace DOTSSurvivor
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            var playerInput = SystemAPI.GetSingleton<InputState>();
-            var playerDirection = new float3(playerInput.Horizontal, playerInput.Vertical, 0);
+            var controllerDirection = SystemAPI.GetSingleton<Controller>();
+            var playerDirection = controllerDirection.Direction;
             var playerDirectionNormalized = math.normalize(playerDirection);
 
             foreach (var (projectileShooter, localToWorld, entity) in
