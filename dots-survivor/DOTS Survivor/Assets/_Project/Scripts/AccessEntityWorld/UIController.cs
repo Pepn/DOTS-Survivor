@@ -28,6 +28,15 @@ namespace DOTSSurvivor
             }
         }
 
+        private void OnDisable()
+        {
+            var DisplayInfoSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<DisplayInfoSystem>();
+            if (DisplayInfoSystem != null)
+            {
+                DisplayInfoSystem.OnUpdateTotalEntities -= UpdateEntitiesCount;
+            }
+        }
+
         private void UpdateEntitiesCount(int count)
         {
             entityCountTmp.text = $"ENTS: {count.ToString()}";

@@ -147,7 +147,7 @@ Material:
     m_Colors:
     - Toon_Ramp_Tint: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
     - _BaseColor: {r: 0.6301887, g: 0, b: 0.498234, a: 1}
-    - _Color: {r: 0.9199506, g: 0.8034855, b: 0.767099, a: 1}
+    - _Color: {r: 0.83076656, g: 0.94725025, b: 0.8134637, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WorldSpaceLightPos0: {r: 0, g: 0, b: 0, a: 0}
