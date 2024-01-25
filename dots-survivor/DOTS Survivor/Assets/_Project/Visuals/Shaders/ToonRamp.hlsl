@@ -15,24 +15,32 @@ in float ToonRampOffset, out float3 ToonRampOutput, out float3 Direction)
 			half4 shadowCoord = TransformWorldToShadowCoord(WorldPos);
 		#endif 
 
+
 		// grab the main light
 		#if _MAIN_LIGHT_SHADOWS_CASCADE || _MAIN_LIGHT_SHADOWS
-			Light light = GetMainLight(shadowCoord);
+			Light light2 = GetMainLight(shadowCoord);
 		#else
-			Light light = GetMainLight();
+			Light light2 = GetMainLight();
 		#endif
+	
+		// just use point light
+		Light light = GetAdditionalLight(0, WorldPos);
 
 		// dot product for toonramp
 		half d = dot(Normal, light.direction) * 0.5 + 0.5;
 		
 		// toonramp in a smoothstep
-		half toonRamp = smoothstep(ToonRampOffset, ToonRampOffset+ ToonRampSmoothness, d );
+		half toonRamp = smoothstep(ToonRampOffset, ToonRampOffset+ ToonRampSmoothness, d);
+	
 		// multiply with shadows;
 		toonRamp *= light.shadowAttenuation;
+	
 		// add in lights and extra tinting
-		ToonRampOutput = light.color * (toonRamp + ToonRampTinting) ;
+		ToonRampOutput = light.color * (toonRamp + ToonRampTinting);
+	
 		// output direction for rimlight
 		Direction = light.direction;
+	
 	#endif
 
 }

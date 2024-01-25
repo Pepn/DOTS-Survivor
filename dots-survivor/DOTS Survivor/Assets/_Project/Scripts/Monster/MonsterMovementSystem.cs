@@ -77,12 +77,9 @@ namespace DOTSSurvivor
 
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
-        {              
+        {
             // get player position //TODO: optimize
-            var transformLookup = SystemAPI.GetComponentLookup<LocalTransform>(true);
-            var controllerEntity = SystemAPI.GetSingletonEntity<Controller>();
-            var controller = SystemAPI.GetSingleton<Controller>();
-            var controllerTransform = transformLookup[controllerEntity];
+            PlayerAspect player = SystemAPI.GetAspect<PlayerAspect>(SystemAPI.GetSingletonEntity<Controller>());
 
             var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
 
@@ -91,7 +88,7 @@ namespace DOTSSurvivor
             var ecb = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
 
             var experienceSpawner = SystemAPI.GetSingletonRW<ExperienceSpawner>();
-            Unity.Mathematics.Random rng = Unity.Mathematics.Random.CreateFromIndex(0);
+            Unity.Mathematics.Random rng = Unity.Mathematics.Random.CreateFromIndex(seedOffset);
 
             // check bullet monster collision
             foreach (var (monsterTransform, monsterEntity) in
@@ -108,6 +105,9 @@ namespace DOTSSurvivor
                         ecb.DestroyEntity(projectileEntity);
 
                         float r = rng.NextFloat(0f, 1f);
+
+                        // increase score
+                        player.PlayerData.ValueRW.Score += player.PlayerData.ValueRO.ScoreMultiplier;
 
                         // Spawn XP chance based
                         if (r > experienceSpawner.ValueRO.SpawnChance)
@@ -128,14 +128,14 @@ namespace DOTSSurvivor
                 }
             }
 
-            //seedOffset += 1337;
+            seedOffset += 1337;
 
             // Uses the BoidTarget query
             var job = new MoveMonsterJob()
             {
                 SeedOffset = seedOffset,
                 DeltaTime = SystemAPI.Time.DeltaTime,
-                TargetPos = controllerTransform.Position,
+                TargetPos = player.Transform.ValueRO.Position,
                 ECB = ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged),
             };
             job.Schedule(queryMonsters);

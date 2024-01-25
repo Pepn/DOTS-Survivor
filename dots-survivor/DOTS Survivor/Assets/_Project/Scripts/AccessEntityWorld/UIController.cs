@@ -12,12 +12,12 @@ namespace DOTSSurvivor
         [SerializeField] private TextMeshProUGUI fpsTmp;
 
         private float deltaTime = 0.0f;
-
+        DisplayInfoSystem DisplayInfoSystem;
         private void OnEnable()
         {
             Application.targetFrameRate = -1;
 
-            var DisplayInfoSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<DisplayInfoSystem>();
+            DisplayInfoSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<DisplayInfoSystem>();
             if(DisplayInfoSystem != null)
             {
                 DisplayInfoSystem.OnUpdateTotalEntities += UpdateEntitiesCount;
@@ -30,7 +30,6 @@ namespace DOTSSurvivor
 
         private void OnDisable()
         {
-            var DisplayInfoSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<DisplayInfoSystem>();
             if (DisplayInfoSystem != null)
             {
                 DisplayInfoSystem.OnUpdateTotalEntities -= UpdateEntitiesCount;

@@ -107,10 +107,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Brightness_Rim: 5
+    - Brightness_Rim: 3.73
     - Rim_Power: 0
-    - Toon_Ramp_Offset: 1
-    - Toon_Ramp_Smoothness: 0.5
+    - Toon_Ramp_Offset: 0.604
+    - Toon_Ramp_Smoothness: 0
     - _AlphaClip: 0
     - _AlphaToMask: 0
     - _Blend: 0
@@ -147,7 +147,7 @@ Material:
     m_Colors:
     - Toon_Ramp_Tint: {r: 0.6320754, g: 0.6320754, b: 0.6320754, a: 1}
     - _BaseColor: {r: 0.6301887, g: 0, b: 0.498234, a: 1}
-    - _Color: {r: 0.83076656, g: 0.94725025, b: 0.8134637, a: 1}
+    - _Color: {r: 0.4215284, g: 0.59035414, b: 0.796638, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _WorldSpaceLightPos0: {r: 0, g: 0, b: 0, a: 0}

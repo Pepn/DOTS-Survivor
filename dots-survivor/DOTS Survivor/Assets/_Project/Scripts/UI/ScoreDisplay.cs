@@ -11,33 +11,55 @@ namespace DOTSSurvivor
     {
         [SerializeField] MMF_Player OnIncreaseScore;
         [SerializeField] TextMeshProUGUI _scoreTmp;
-
-        private void Awake()
-        {
-        }
+        public float Score { get; private set; }
+        [SerializeField] MMF_Player OnIncreaseMultiplier;
+        [SerializeField] TextMeshProUGUI _multiplierTmp;
+        public float Multiplier { get; private set; }
+        PlayerStateSystem _displayInfoSystem;
         private void OnEnable()
         {
-            var DisplayInfoSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<DisplayInfoSystem>();
-            if (DisplayInfoSystem != null)
+            _displayInfoSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<PlayerStateSystem>();
+            if (_displayInfoSystem != null)
             {
-                DisplayInfoSystem.OnUpdateTotalEntities += (int score) => OnIncreaseScore.PlayFeedbacks();
-                DisplayInfoSystem.OnUpdateTotalEntities += (int score) => UpdateText(score);
+                // score
+                _displayInfoSystem.OnUpdateScore += (float score) => Score = score;
+                _displayInfoSystem.OnUpdateScore += (float score) => OnIncreaseScore.PlayFeedbacks();
+                _displayInfoSystem.OnUpdateScore += (float score) => UpdateText(score, "Score:", _scoreTmp);
+
+                // multiplier
+                _displayInfoSystem.OnUpdateScore += (float multiplier) => Multiplier = multiplier;
+                _displayInfoSystem.OnUpdateScoreMultiplier += (float multiplier) => OnIncreaseMultiplier.PlayFeedbacks();
+                _displayInfoSystem.OnUpdateScoreMultiplier += (float multiplier) => UpdateText(multiplier, "Multiplier:", _multiplierTmp);
+            }
+            else
+            {
+                Debug.LogWarning("DisplayInfoSystem not found !");
             }
         }
 
         private void OnDisable()
         {
-            var DisplayInfoSystem = World.DefaultGameObjectInjectionWorld.GetExistingSystemManaged<DisplayInfoSystem>();
-            if (DisplayInfoSystem != null)
+            if (_displayInfoSystem != null)
             {
-                DisplayInfoSystem.OnUpdateTotalEntities -= (int score) => OnIncreaseScore.PlayFeedbacks();
-                DisplayInfoSystem.OnUpdateTotalEntities -= (int score) => UpdateText(score);
+                // score
+                _displayInfoSystem.OnUpdateScore -= (float score) => Score = score;
+                _displayInfoSystem.OnUpdateScore -= (float score) => OnIncreaseScore.PlayFeedbacks();
+                _displayInfoSystem.OnUpdateScore -= (float score) => UpdateText(score, "Score", _scoreTmp);
+
+                // multiplier
+                _displayInfoSystem.OnUpdateScore -= (float multiplier) => Multiplier = multiplier;
+                _displayInfoSystem.OnUpdateScoreMultiplier -= (float multiplier) => OnIncreaseMultiplier.PlayFeedbacks();
+                _displayInfoSystem.OnUpdateScoreMultiplier -= (float multiplier) => UpdateText(multiplier, "Multiplier:", _multiplierTmp);
+            }
+            else
+            {
+                Debug.LogWarning("DisplayInfoSystem not found !");
             }
         }
 
-        private void UpdateText(int score)
+        private void UpdateText(float score, string text, TextMeshProUGUI tmp)
         {
-            _scoreTmp.text = $"Score: {score}";
+            tmp.text = $"{text}{score}";
         }
     }
 }

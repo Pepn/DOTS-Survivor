@@ -52,7 +52,7 @@ namespace DOTSSurvivor
             {
                 float xpRequired = CalculateXPForLevel(level);
                 levelUpBoundaries.Add(xpRequired);
-                Debug.Log($"{level}\t{xpRequired}");
+                //Debug.Log($"{level}\t{xpRequired}");
             }
         }
     }

@@ -404,20 +404,6 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "55211470d6b746f5b5fecb73a5dea81b"
-                },
-                "m_SlotId": 1
-            }
-        },
-        {
-            "m_OutputSlot": {
-                "m_Node": {
-                    "m_Id": "b2f8d87987bc4015b833784dc6772b6d"
-                },
-                "m_SlotId": 0
-            },
-            "m_InputSlot": {
-                "m_Node": {
                     "m_Id": "6208b7b8f0c543e78a2446e5fc4eb226"
                 },
                 "m_SlotId": 1
@@ -488,7 +474,7 @@
             },
             "m_InputSlot": {
                 "m_Node": {
-                    "m_Id": "2a5ff41b23594eb68cb48e77ac02c3b9"
+                    "m_Id": "af9127fd42e94b65b60f5ff0e9c08b16"
                 },
                 "m_SlotId": 0
             }
@@ -1361,8 +1347,8 @@
     "m_ObjectId": "4aa6576c4c65465d86147d20f81bfc90",
     "m_Title": "ToonLighting",
     "m_Position": {
-        "x": 10.0,
-        "y": 10.0
+        "x": -2397.0,
+        "y": -479.0000305175781
     }
 }
 
@@ -1882,10 +1868,10 @@
         "m_Expanded": true,
         "m_Position": {
             "serializedVersion": "2",
-            "x": 176.99998474121095,
-            "y": 32.99997329711914,
-            "width": 208.00001525878907,
-            "height": 302.0
+            "x": 54.00005340576172,
+            "y": -47.999996185302737,
+            "width": 207.99990844726563,
+            "height": 301.9999694824219
         }
     },
     "m_Slots": [
@@ -2792,7 +2778,7 @@
     "m_ShaderOutputName": "B",
     "m_StageCapability": 3,
     "m_Value": {
-        "x": 0.0,
+        "x": 11.619999885559082,
         "y": 1.0,
         "z": 0.0,
         "w": 0.0

@@ -10,8 +10,7 @@ namespace DOTSSurvivor
     {
         [SerializeField] private TextMeshProUGUI hpTmp;
         [SerializeField] private TextMeshProUGUI xpTmp;
-        private float hp, xp, score;
-        private float scoreMultiplier;
+        private float hp, xp;
 
         private void OnEnable()
         {

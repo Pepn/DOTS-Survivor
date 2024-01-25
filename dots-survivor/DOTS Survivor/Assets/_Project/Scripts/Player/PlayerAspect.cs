@@ -11,6 +11,7 @@ namespace DOTSSurvivor
         public readonly Entity self;
         public readonly RefRW<LocalTransform> Transform;
         public readonly RefRO<Controller> Controller;
+        public readonly RefRW<PlayerData> PlayerData;
 
         // Upgrades can be a seperate IAspect container aswell
         public readonly EnabledRefRW<PlayerUpgradeHexagons> PlayerUpgradeHexagons;

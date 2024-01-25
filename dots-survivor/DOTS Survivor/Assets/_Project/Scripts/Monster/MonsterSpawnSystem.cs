@@ -25,8 +25,9 @@ namespace DOTSSurvivor
             {
                 var monsterSpawner = SystemAPI.GetSingleton<MonsterSpawner>();
 
-                int count = monsterSpawner.SpawnAmount;
-                float spawnWait = monsterSpawner.SpawnCooldown;
+                float timeLeft = SystemAPI.GetSingleton<GameControllerData>().PercentageTimeComplete;
+                int count = (int)math.lerp(monsterSpawner.SpawnAmountStart, monsterSpawner.SpawnAmountEnd, timeLeft);
+                float spawnWait = math.lerp(monsterSpawner.SpawnCooldownStart, monsterSpawner.SpawnCooldownEnd, timeLeft);
 
                 spawnTimer -= SystemAPI.Time.DeltaTime;
                 if (spawnTimer > 0)

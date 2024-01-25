@@ -1,4 +1,5 @@
 using Unity.Entities;
+using UnityEditor.ShaderGraph.Internal;
 using UnityEngine;
 
 namespace DOTSSurvivor
@@ -9,6 +10,7 @@ namespace DOTSSurvivor
         public float CurrentHealth;
         public float CurrentXP;
         public int CurrentLevel;
+        public float Score, ScoreMultiplier;
 
         class Baker : Baker<PlayerAuthoring>
         {
@@ -21,6 +23,8 @@ namespace DOTSSurvivor
                     CurrentHealth = authoring.CurrentHealth,
                     CurrentXP = authoring.CurrentXP,
                     CurrentLevel = authoring.CurrentLevel,
+                    Score = authoring.Score,
+                    ScoreMultiplier = authoring.ScoreMultiplier,
                 });
             }
         }
@@ -32,5 +36,7 @@ namespace DOTSSurvivor
         public float CurrentHealth;
         public float CurrentXP;
         public int CurrentLevel;
+        public float Score;
+        public float ScoreMultiplier;
     }
 }

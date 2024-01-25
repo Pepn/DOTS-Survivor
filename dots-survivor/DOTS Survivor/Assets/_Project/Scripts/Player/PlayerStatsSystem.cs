@@ -9,6 +9,11 @@ namespace DOTSSurvivor
     {
         public Action<float, float> OnUpdateHealth;
         public Action<float> OnUpdateXP;
+        public Action<float> OnUpdateScore;
+        public Action<float> OnUpdateScoreMultiplier;
+
+        // game state
+        public Action<float> OnUpdateTime;
 
         protected override void OnCreate()
         {
@@ -19,6 +24,8 @@ namespace DOTSSurvivor
         {
             OnUpdateHealth?.Invoke(SystemAPI.GetSingleton<PlayerData>().CurrentHealth, 10f);
             OnUpdateXP?.Invoke(SystemAPI.GetSingleton<PlayerData>().CurrentXP);
+            OnUpdateScore?.Invoke(SystemAPI.GetSingleton<PlayerData>().Score);
+            OnUpdateScoreMultiplier?.Invoke(SystemAPI.GetSingleton<PlayerData>().ScoreMultiplier);
         }
     }
 }
